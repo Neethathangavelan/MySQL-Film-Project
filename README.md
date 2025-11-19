@@ -1,2 +1,102 @@
-# MySQL-Film-Project
-This MySQL project for Digital Studio manages movie data with tables for film details, audience categories, and a joined table. It demonstrates table creation, data insertion, ALTER TABLE, lookup usage, and LEFT JOIN to combine movie info with audience type.
+The database contains the following tables:
+
+1. film_details
+
+Stores movie information such as:
+
+Film ID
+
+Actor
+
+Movie name
+
+Film type
+
+City/Place
+
+Language
+
+Salary
+
+Production
+
+Duration
+
+Rating
+
+2. audience_lookup
+
+A lookup table that maps film types to audience categories.
+
+3. fullfilm_details
+
+A final output table created using a LEFT JOIN, combining movie details with audience categories.
+
+⚙️ Key SQL Concepts Used
+✔️ Database Creation
+CREATE DATABASE digital_studio;
+USE digital_studio;
+
+✔️ Table Creation
+CREATE TABLE film_details(
+    film_id INT,
+    actor VARCHAR(15),
+    moviename VARCHAR(15),
+    filmtype VARCHAR(15),
+    place VARCHAR(15),
+    languages VARCHAR(15),
+    salary INT,
+    production VARCHAR(15),
+    duration INT,
+    rating VARCHAR(15)
+);
+
+✔️ Alter Table
+ALTER TABLE film_details MODIFY production VARCHAR(25);
+ALTER TABLE film_details MODIFY rating FLOAT;
+
+✔️ Insert Data
+
+50+ rows inserted into film_details, and 11 rows into the lookup table.
+
+✔️ Lookup Table Creation
+CREATE TABLE audience_lookup(
+    film_type VARCHAR(25),
+    audience VARCHAR(20)
+);
+
+✔️ Joining Tables
+
+Used LEFT JOIN to attach audience category to each film:
+
+CREATE TABLE fullfilm_details AS 
+SELECT film_details.*, audience_lookup.audience
+FROM film_details
+LEFT JOIN audience_lookup 
+ON film_details.filmtype = audience_lookup.film_type;
+
+📊 Final Output Table
+
+The fullfilm_details table contains:
+
+All movie details
+
+The mapped audience column
+
+🎯 Purpose of This Project
+
+This MySQL project demonstrates:
+
+Table creation & schema design
+
+Data insertion (large dataset)
+
+Lookup table usage
+
+ALTER TABLE operations
+
+JOIN operations
+
+Derived table creation
+
+Understanding relational database design
